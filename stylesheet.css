@@ -1,0 +1,38 @@
+.mainMenu {
+    list-style-type: none;  
+    overflow-x: none;
+    width:900px;
+
+}
+
+.subnav {
+    display: block;
+    float: left;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+a {
+    background-color: gray;
+    padding-right:15px;
+    padding-left:15px;
+}
+
+a:hover {
+    background-color: goldenrod;
+}
+
+h1,h2 {
+    text-align:center;
+}
+
+.firstFieldset {
+    width:450px;  
+}
+
+.gamesFormat {
+    position: absolute;
+    left: 50%;
+    padding-top: 100px;
+    
+}
