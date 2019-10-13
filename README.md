@@ -3,4 +3,4 @@
 ## Made using HTML, CSS, JavaScript, and p5.js Framework
 
 ## How to get repository:
-  $git clone https://github.com/henryfaulkner/JS-Gaming-Website-CSCI4300.git
+    $git clone https://github.com/henryfaulkner/JS-Gaming-Website-CSCI4300.git
