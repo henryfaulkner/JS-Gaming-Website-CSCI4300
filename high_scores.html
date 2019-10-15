@@ -2,6 +2,7 @@
 <html lang = 'en'>
     <head>
         <link rel="stylesheet" href="stylesheet.css">
+        <script src ="high_score_scripts.js"></script>
     </head>
     <body>
         <div class = "navBar">
@@ -12,15 +13,21 @@
                 <ul class="mainMenu">
                     <li class="subnav"><a href="index.html">Home Page</a></li>
                     <li class="subnav"><a href="Snake_Game/snake_page.html">Snake Game</a></li>
-                    <li class="subnav"><a href=".html">Flappy Bird</a></li>
+                    <li class="subnav"><a href="Birdy_Flap/birdy_page.html">Flappy Bird</a></li>
                     <li class="subnav"><a href="high_scores.html">High Scores</a></li>
                     <li class="subnav"><a href="account_page.html">Account Info</a></li>
                 </ul>
             </nav>
         </div>
-        <div class = "scoreTable">
+        <div class = "tableButtons">
+            <button id = "snakeButton"> Snake High Scores </button>
+            <button id = "flappyBirdButton"> Flappy Bird High Scores </button>
+            <br>
+            <br>
+        </div>
+        <div id = "scoreTable">
             <table>
-                <caption> Snake High Scores </caption>
+                <caption id = "scoreTableName"> </caption>
                 <tr>
                     <th> Position </th>
                     <th> Username </th>
@@ -28,18 +35,18 @@
                 </tr>
                 <tr>
                     <td> 1 </td>
-                    <td> 420_N0SC0PE </td>
-                    <td> 420000 </td>
+                    <td class = "usernames"> </td>
+                    <td class = "scores"> </td>
                 </tr>
                 <tr>
                     <td> 2 </td>
-                    <td> Bob </td>
-                    <td> 100000 </td>
+                    <td class = "usernames"> </td>
+                    <td class = "scores"> </td>
                 </tr>
                 <tr>
                     <td> 3 </td>
-                    <td> MLGPLAYA </td>
-                    <td> 333 </td>
+                    <td class = "usernames"> </td>
+                    <td class = "scores"> </td>
                 </tr>
             </table>            
         </div>
