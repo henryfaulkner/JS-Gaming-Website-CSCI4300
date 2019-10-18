@@ -4,7 +4,8 @@ var score;
 var startLoop = false;
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.position((windowWidth - width) / 2, (windowHeight - (height*0.5)) / 2);
   bird = new Bird();
   pipes.push(new Pipe());
   score = 0;

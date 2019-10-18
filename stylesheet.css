@@ -10,6 +10,7 @@ body
     margin-bottom: 30px;
     padding-left: 0px;
     padding-right: 0px;
+    
 }
 
 .mainMenu {
@@ -29,7 +30,7 @@ body
 
 
 a {
-    background-color: gray;
+    background-color: lightgray;
     padding-right:15px;
     padding-left:15px;
 }
@@ -46,12 +47,6 @@ h1 {
 h2 {
     text-align: center;
 }
-
-.gamesFormat {
-    position: absolute;
-    left: 50%;
-    padding-top: 100px;
-} 
 
 .firstFieldset {
     width:450px;  
@@ -155,5 +150,14 @@ td
 .tableButtons
 {
     text-align: center;
+}
+
+#snakeButton, #flappyBirdButton 
+{
+    padding: 15px 32px;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+    
 }
 
