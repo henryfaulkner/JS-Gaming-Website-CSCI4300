@@ -123,6 +123,7 @@ table
     background-color: lightgray;
     margin-left: 35%;
     margin-right: 35%;
+    width: 30%;
 }
 
 th
@@ -161,3 +162,52 @@ td
     
 }
 
+.storeItems {
+    display: grid;
+    grid-template-areas: 'storeItem1 storeItem2 storeItem3';
+    gap: 20px
+}
+
+#storeItem1 
+{
+    background-color: lightgray;
+    border: 1px solid black;
+    grid-area: storeItem1;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#storeItem1:hover 
+{
+    background-color: gray;
+}
+
+#storeItem2
+{
+    background-color: lightgray;
+    border: 1px solid black;
+    grid-area: storeItem2;
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
+
+#storeItem2:hover 
+{
+    background-color: gray;
+}
+
+#storeItem3
+{
+    background-color: lightgray;
+    border: 1px solid black;
+    grid-area: storeItem3;
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
+
+#storeItem3:hover 
+{
+    background-color: gray;
+}
