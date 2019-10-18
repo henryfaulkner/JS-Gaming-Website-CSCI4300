@@ -2,6 +2,7 @@ var bird;
 var pipes = [];
 var score;
 var startLoop = false;
+var spaceStart = false; 
 
 function setup() {
   var canvas = createCanvas(400, 400);
@@ -21,6 +22,8 @@ function draw() {
     pipes[i].show();
     pipes[i].update();
     
+    bird.show();
+    
     //deals with bird to pipe collision
     if(pipes[i].hits(bird)){
       console.log("HIT");
@@ -29,13 +32,21 @@ function draw() {
       textAlign(CENTER);
       textStyle(BOLD);
       stroke(0);
-      text("Score: " + score,200,200);
+      text("Score: " + floor(score),200,200);
+      textSize(35);
+      text("Press 'r' to start over.", 200, 250);
       score = 0; //resets score
+      
       noLoop();
+      //trying to restart game 
+      startLoop = false; //continues looping on space
+      pipes = []; //resets num pipes to 0
+      bird.x = 64;
+      bird.y = height/2;
     } else if(bird.x > pipes[i].x && bird.x < pipes[i].x + pipes[i].w) {  
       //increments & prints score if bird passes pipe
       //& does not hit
-      score += .25; //fixes issue of multi-scoring
+      score += 0.25; //fixes issue of multi-scoring
       if(score % 1 == 0) {
         console.log("Score: " + score);
       }
@@ -47,17 +58,19 @@ function draw() {
     }
   }
   
-  bird.show();
   bird.update();
   
   if(frameCount % 60 == 0) {
     pipes.push(new Pipe());
   }
-  
 }
 
 function keyPressed(){
-  if(key == " " && startLoop == false){
+  if(key == " " && startLoop == false && spaceStart == false){
+    startLoop = true;
+    spaceStart = true;
+    loop();
+  } else if (key == 'r' && startLoop == false) {
     startLoop = true;
     loop();
   } else if(key == " "){

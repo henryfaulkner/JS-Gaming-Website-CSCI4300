@@ -6,7 +6,7 @@ function Pipe() {
   this.gap = 80; //gap btw top & bottom pipe
   this.x = width; //starting point
   this.w = 20; //pipe width
-  this.speed = 5; //pipe speed
+  this.speed = 4; //pipe speed
   this.highlight = false; //
   
   this.show = function() {
