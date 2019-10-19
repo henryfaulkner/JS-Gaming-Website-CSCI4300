@@ -4,8 +4,7 @@ var scl = 16; //scale
 var food;
 
 function setup() {
-  var canvas = createCanvas(400, 400);
-  canvas.position((windowWidth - width) / 2, (windowHeight - (height*0.5)) / 2);
+  createCanvas(400, 400);
   snake = new Snake();
   frameRate(10);
   pickLocation();
@@ -45,13 +44,22 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === UP_ARROW) {
-    snake.dir(0, -1);
+    //makes it so u can't kill yo'self
+    if(snake.yspeed != 1) { 
+      snake.dir(0, -1);
+    }
   } else if (keyCode === DOWN_ARROW) {
-    snake.dir(0, 1);
+    if(snake.yspeed != -1) {
+      snake.dir(0, 1);
+    }
   } else if (keyCode === RIGHT_ARROW) {
-    snake.dir(1, 0);
+    if(snake.xspeed != -1) {
+      snake.dir(1, 0);
+    }
   } else if (keyCode === LEFT_ARROW) {
-    snake.dir(-1, 0);
+    if(snake.xspeed != 1) {
+      snake.dir(-1, 0);
+    }
   } // if-else
   loop();
 }
