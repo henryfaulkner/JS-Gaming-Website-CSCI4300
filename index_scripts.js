@@ -23,5 +23,5 @@ function goToHighScores()
 
 function goToAccount()
 {
-    window.location.href = "account_page.html";
+    window.location.href = "store.html";
 }
