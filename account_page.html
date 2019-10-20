@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
+        <title>Account Page</title>
         <link rel="stylesheet" href="stylesheet.css">
-
+        <meta charset="UTF-8">
     </head>
     <body>
         <script>document.body.style.background = localStorage.bgcolor;</script>
@@ -19,25 +20,26 @@
                     <li class="subnav" style="margin-left:1%"><a href="store.html">Store</a></li>
                 </ul>
             </nav>
+        </div>
         <br>
-
-        <section class="firstInfo">
-            <form id="firstForm" action="" method="post">
+        
+        <div class="firstInfo">
+            <form id="firstForm" method="post"> 
                 <fieldset class="firstFieldset">
-                    <legend>Account Info</legend>
+                    <legend><h3>Account Info</h3></legend>
                     <label>First Name: </label>
-                    <input type="text" maxlength="20" size="20" pattern="[A-Z]*[a-z]*"> <br>
+                    <input type="text" maxlength="20" size="25" pattern="[A-Z]*[a-z]*"> <br>
                     <label>Last Name: </label>
-                    <input type="text" maxlength="20" size="20" pattern="[A-Z]*[a-z]*"> <br>
-                    <label> Email (will be username): </label>
-                    <input type="text" maxlength="30" size="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"> <br>
+                    <input type="text" maxlength="20" size="25" pattern="[A-Z]*[a-z]*" style="margin-left:4px"> <br>
+                    <label> Email: </label>
+                    <input type="text" maxlength="25" size="25" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-left:35px"> <br>
                     <label>Password: </label>
-                    <input type="text" maxlength="20" size="20" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$">
+                    <input type="text" maxlength="20" size="25" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" style="margin-left:12px">
                     <button type="submit">Submit</button>
                 </fieldset>
                 <p>*Password must meet strength requirements. Therefore, a valid password must be at least 8 characters long, contain both upper and lower-case letters, and have at least one digit.</p>
             </form>
-        </section>
+        </div>
 
     </body>
 </html>

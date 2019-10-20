@@ -4,7 +4,8 @@ var scl = 16; //scale
 var food;
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.position((windowWidth - width) / 2, ((windowHeight - (height*0.5)) / 2)+30);
   snake = new Snake();
   frameRate(10);
   pickLocation();
