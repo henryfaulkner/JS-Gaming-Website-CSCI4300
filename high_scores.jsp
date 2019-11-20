@@ -9,20 +9,26 @@
     <body>
         <script>document.body.style.background = localStorage.bgcolor;</script>
         <div class = "navBar">
-            <br>
+            <h3 id="screenname"style="text-align: right;"></h3>
             <h1>High Scores</h1>
-            <br>
             <nav>
                 <ul class="mainMenu">
-                    <li class="subnav"><a href="index.html">Home Page</a></li>
-                    <li class="subnav"><a href="Snake_Game/snake_page.html">Snake Game</a></li>
-                    <li class="subnav"><a href="Birdy_Flap/birdy_page.html">Flappy Bird</a></li>
-                    <li class="subnav"><a href="high_scores.html">High Scores</a></li>
-                    <li class="subnav"><a href="account_page.html">Account Info</a></li>
-                    <li class="subnav" style="margin-left:1%"><a href="store.html">Store</a></li>
+                    <li class="subnav"><a href="index.jsp">Home Page</a></li>
+                    <li class="subnav"><a href="Snake_Game/snake_page.jsp">Snake Game</a></li>
+                    <li class="subnav"><a href="Birdy_Flap/birdy_page.jsp">Flappy Bird</a></li>
+                    <li class="subnav"><a href="high_scores.jsp">High Scores</a></li>
+                    <li class="subnav"><a href="account_page.jsp">Account Info</a></li>
+                    <li class="subnav" style="margin-left:1%"><a href="store.jsp">Store</a></li>
                 </ul>
             </nav>
         </div>
+        <%@ page import="java.util.*" %>
+        <%@ page import="java.sql.*" %>
+        <%Cookie [] cookies = request.getCookies();%>
+        <script>
+            if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "")
+                document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";
+        </script>
         <div class = "tableButtons">
             <button id = "snakeButton"> Snake High Scores </button>
             <button id = "flappyBirdButton"> Flappy Bird High Scores </button>

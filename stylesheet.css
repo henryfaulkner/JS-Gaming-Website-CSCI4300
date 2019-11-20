@@ -240,3 +240,8 @@ td
 {
     background-color: gray;
 }
+
+#screenname
+{
+    text-align: right;
+}
