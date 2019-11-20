@@ -30,35 +30,10 @@
                 document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";
         </script>
         <div class = "tableButtons">
-            <button id = "snakeButton"> Snake High Scores </button>
-            <button id = "flappyBirdButton"> Flappy Bird High Scores </button>
+            <a href = "snake_table.jsp" id = "snakeButton"> Snake High Scores </a>
+            <a href = "flappy_bird_table.jsp" id = "flappyBirdButton"> Flappy Bird High Scores </a>
             <br>
             <br>
-        </div>
-        <div id = "scoreTable">
-            <table>
-                <caption id = "scoreTableName"> </caption>
-                <tr>
-                    <th> Position </th>
-                    <th> Username </th>
-                    <th> Score </th>
-                </tr>
-                <tr>
-                    <td> 1 </td>
-                    <td class = "usernames"> </td>
-                    <td class = "scores"> </td>
-                </tr>
-                <tr>
-                    <td> 2 </td>
-                    <td class = "usernames"> </td>
-                    <td class = "scores"> </td>
-                </tr>
-                <tr>
-                    <td> 3 </td>
-                    <td class = "usernames"> </td>
-                    <td class = "scores"> </td>
-                </tr>
-            </table>            
         </div>
     </body>
 </html>
