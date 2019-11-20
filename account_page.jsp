@@ -56,7 +56,7 @@
             </div>
 
             <div class="secondInfo">
-                <form id="secondForm" method="post"> 
+                <form id="secondForm" action="registered.jsp" method="post"> 
                     <fieldset class="secondFieldset">
                         <legend style="text-align: center;"><h2>Log In</h2></legend>
                         <label> Email: </label>
