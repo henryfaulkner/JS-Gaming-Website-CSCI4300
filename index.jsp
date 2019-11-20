@@ -37,7 +37,7 @@
             </div>
             <div id = "cell2">
                 <p class = "subheading"> Save Your Scores </p>
-                <img src = "highScoreScreenshot.PNG" alt="High Score" class = "menuImage">
+                <img src = "highScoreScreenshot.png" alt="High Score" class = "menuImage">
                 <p> Make an account to save your high scores and view them whenever you want! </p>
             </div>
             <div id = "cell3">

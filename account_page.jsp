@@ -56,13 +56,13 @@
             </div>
 
             <div class="secondInfo">
-                <form id="secondForm" action="registered.jsp" method="post"> 
+                <form id="secondForm" action="login.jsp" method="post"> 
                     <fieldset class="secondFieldset">
                         <legend style="text-align: center;"><h2>Log In</h2></legend>
                         <label> Email: </label>
-                        <input type="text" maxlength="25" size="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-left:48px"> <br>
+                        <input type="text" name="email" maxlength="25" size="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-left:48px"> <br>
                         <label>Password: </label>
-                        <input type="text" maxlength="20" size="45" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" style="margin-left:25px"> <br>
+                        <input type="text" name="password" maxlength="20" size="45" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" style="margin-left:25px"> <br>
                         <button type="submit" id = "loginButton">Login</button>
                     </fieldset>
                 </form>

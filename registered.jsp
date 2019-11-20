@@ -30,7 +30,7 @@
             PreparedStatement pstmt1 = connection.prepareStatement( query );
             pstmt1.setString(1, email);
             ResultSet rs = pstmt1.executeQuery( );
-            if(rs.absolute(1) == false){
+            if(rs.first() == false){
                 String insert = "INSERT into user () VALUES (?, ?, ?, 0);";
                 PreparedStatement pstmt2 = connection.prepareStatement( insert );
                 pstmt2.setString(1, name);

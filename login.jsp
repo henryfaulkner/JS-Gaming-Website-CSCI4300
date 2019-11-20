@@ -6,9 +6,6 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <%@ page import="java.util.*" %>
-        <%@ page import="java.sql.*" %>
-
         <script>document.body.style.background = localStorage.bgcolor;</script>
         <div class = "navBar">
             <h3 id="screenname" style="text-align: right;"></h3>
@@ -25,15 +22,48 @@
                 </ul>
             </nav>
         </div>
-        <script>
-            if(document.getElementById("screenname") && "<%=cName.getValue()%>" != "")
-                document.getElementById("screenname").textContent = "Welcome, " + "<%=cName.getValue()%>";</script>
+        
         <br>
-        <p><% 
-            Cookie [] cookies = request.getCookies(); 
-            for(int i = 0; i < cookies.length; i++ )
-                out.print(cookies[i].getName() + ": " + cookies[i].getValue() + " ");%>
-        </p>
-        <h2>You have been Registered!!</h2>
+        <%@ page import="java.util.*" %>
+        <%@ page import="java.sql.*" %>
+        <% String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        try {
+            String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
+            Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
+            //checks for matching email & password pair
+            String query = "SELECT screenname FROM user WHERE email=? and pass=?;"; 
+            PreparedStatement pstmt = connection.prepareStatement( query );
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.first() == false){  //attempts to move cursor to first & only row 
+                out.println("<h2>Either your email or password are incorrect.</h2>");
+                connection.close();
+            } else {
+                String name = rs.getString(1);
+                out.println("<h2>You have been Logged in!!</h2>");
+                connection.close();
+
+                Cookie cName = new Cookie("Name", name);
+                Cookie cEmail = new Cookie("Email", email);
+                Cookie cPass = new Cookie("Password", password);
+                cName.setMaxAge(60*60);
+                cEmail.setMaxAge(60*60);
+                cPass.setMaxAge(60*60);
+                response.addCookie(cName);
+                response.addCookie(cEmail);
+                response.addCookie(cPass);
+            }
+        } catch(SQLException e){
+            out.println("<h2>Could not connect to Database. :/</h2>");
+        }
+        %>
+        
+        <%Cookie [] cookies = request.getCookies();%>
+        <script>
+                if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "")
+                    document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";</script>
     </body>
 </html>
