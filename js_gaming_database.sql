@@ -44,6 +44,8 @@ INSERT into scores() VALUES
 ('ELIT3_GAMER', 30, 'bird');
 INSERT into scores() VALUES
 ('BOB', 2, 'bird');
+INSERT into scores() VALUES
+('HenryFaulkner', 10000, 'bird'); 
 
 #ownsproduct
 INSERT into ownsproduct() VALUES
@@ -76,9 +78,15 @@ UPDATE user
 SET tokens = 15
 WHERE screenname = 'Bob';
 
+SELECT email 
+FROM user
+WHERE email="hlf46553@uga.edu";
 
+DELETE from user where screenname="Henry1";
 
-
+SELECT screenname
+FROM user 
+WHERE email="hlf46553@uga.edu" and pass="Baseball9";
 
 
 

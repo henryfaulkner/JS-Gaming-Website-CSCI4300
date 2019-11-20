@@ -252,3 +252,9 @@ td
 {
     background-color: gray;
 }
+
+h1 {
+    padding-top:0px; 
+    margin-top: 0px; 
+    margin-bottom:10px;
+}

@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class = "navBar">
-            <h3 id="screenname"style="text-align: right;"></h3>
+            <h3 id="screenname"style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
             <h1>JavaScript Gaming Library</h1>
             <nav>
                 <ul class="mainMenu">
@@ -25,7 +25,7 @@
         <%@ page import="java.sql.*" %>
         <%Cookie [] cookies = request.getCookies();%>
         <script>
-            if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "")
+            if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
                 document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";
         </script>
 

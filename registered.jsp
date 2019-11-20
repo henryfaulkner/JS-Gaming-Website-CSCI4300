@@ -54,7 +54,7 @@
         
         <script>document.body.style.background = localStorage.bgcolor;</script>
         <div class = "navBar">
-            <h3 id="screenname" style="text-align: right;"></h3>
+            <h3 id="screenname" style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
             <h1>Sign up for your gaming account now!</h1>
             <h2>Be the highest scorer!!</h2>
             <nav>
@@ -69,7 +69,7 @@
             </nav>
         </div>
         <script>
-            if(document.getElementById("screenname") && "<%=cName.getValue()%>" != "")
+            if(document.getElementById("screenname") && "<%=cName.getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
                 document.getElementById("screenname").textContent = "Welcome, " + "<%=cName.getValue()%>";</script>
         <br>
         <p><% 
