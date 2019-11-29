@@ -25,7 +25,7 @@ function draw() {
     bird.show();
     
     //deals with bird to pipe collision
-    if(pipes[i].hits(bird)){
+    if(dies(pipes[i])){
       console.log("HIT");
       textSize(62);
       fill(0);
@@ -76,4 +76,12 @@ function keyPressed(){
   } else if(key == " "){
     bird.jump(); 
   }
+}
+
+function dies(pipe){
+  return pipe.hits(bird);
+}
+
+function getScore(){
+  return score;
 }

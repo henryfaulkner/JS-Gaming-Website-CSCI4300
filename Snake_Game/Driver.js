@@ -1,6 +1,6 @@
 var snake;
 var scl = 16; //scale
-
+var p;
 var food;
 
 function setup() {
@@ -9,6 +9,8 @@ function setup() {
   snake = new Snake();
   frameRate(10);
   pickLocation();
+  
+
 }
 
 function pickLocation() {
@@ -21,15 +23,20 @@ function pickLocation() {
 function draw() {
   background(0);
   if (snake.death()) {
-    textSize(62);
-    fill(255);
-    textAlign(CENTER);
-    textStyle(BOLD);
-    stroke(0);
-    text('Score: ' + snake.total,200,200);
+    p = createP("Score: " + snake.total);
+    print(snake.total);
+    p.position(900, 400);  
+    if(document.cookie != ""){
+      var now = new Date;
+      var utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate() , 
+        now.getUTCHours(), now.getUTCMinutes() + 1, now.getUTCSeconds(), now.getUTCMilliseconds());
+      document.cookie = "score=" + snake.total + ";expires=" + now;
+    }
     noLoop();
     snake.x = 0;
     snake.y = 0;
+    snake.xspeed = 0;
+    snake.yspeed = 0;
     snake.total = 1;
   }
   snake.update();
@@ -63,4 +70,6 @@ function keyPressed() {
     }
   } // if-else
   loop();
+  if(p != null)
+    p.remove();
 }

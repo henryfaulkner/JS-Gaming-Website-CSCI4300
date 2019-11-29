@@ -6,6 +6,24 @@
         <meta charset="UTF-8">
     </head>
     <body>
+        
+        
+        <script>document.body.style.background = localStorage.bgcolor;</script>
+        <div class = "navBar">
+            <h3 id="screenname" style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
+            <h1>Sign up for your gaming account now!</h1>
+            <h2>Be the highest scorer!!</h2>
+            <nav>
+                <ul class="mainMenu">
+                    <li class="subnav"><a href="index.jsp">Home Page</a></li>
+                    <li class="subnav"><a href="Snake_Game/snake_page.jsp">Snake Game</a></li>
+                    <li class="subnav"><a href="Birdy_Flap/birdy_page.jsp">Flappy Bird</a></li>
+                    <li class="subnav"><a href="high_scores.jsp">High Scores</a></li>
+                    <li class="subnav"><a href="account_page.jsp">Account Info</a></li>
+                    <li class="subnav" style="margin-left:1%"><a href="store.jsp">Store</a></li>
+                </ul>
+            </nav>
+        </div>
         <%@ page import="java.util.*" %>
         <%@ page import="java.sql.*" %>
 
@@ -36,9 +54,8 @@
                 pstmt2.setString(1, name);
                 pstmt2.setString(2, email);
                 pstmt2.setString(3, password);
-                out.println(pstmt2);
                 pstmt2.executeUpdate();                
-                out.println("<h2>You have been Registered!!</h2>");
+                out.println("<h1>You have been Registered!!</h1>");
             } else {
                 out.println("<h2>Email is already in use. Please enter a different email.</h2>");
             }
@@ -51,32 +68,11 @@
               out.println("<h2>Screen name already taken. Please enter different screen name.</h2>");
           }
         %>
-        
-        <script>document.body.style.background = localStorage.bgcolor;</script>
-        <div class = "navBar">
-            <h3 id="screenname" style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
-            <h1>Sign up for your gaming account now!</h1>
-            <h2>Be the highest scorer!!</h2>
-            <nav>
-                <ul class="mainMenu">
-                    <li class="subnav"><a href="index.jsp">Home Page</a></li>
-                    <li class="subnav"><a href="Snake_Game/snake_page.jsp">Snake Game</a></li>
-                    <li class="subnav"><a href="Birdy_Flap/birdy_page.jsp">Flappy Bird</a></li>
-                    <li class="subnav"><a href="high_scores.jsp">High Scores</a></li>
-                    <li class="subnav"><a href="account_page.jsp">Account Info</a></li>
-                    <li class="subnav" style="margin-left:1%"><a href="store.jsp">Store</a></li>
-                </ul>
-            </nav>
-        </div>
+
         <script>
-            if(document.getElementById("screenname") && "<%=cName.getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
+            if(document.getElementById("screenname") && "<%=cName.getValue()%>" != "" && "<%=cName.getName()%>" != "JSESSIONID")
                 document.getElementById("screenname").textContent = "Welcome, " + "<%=cName.getValue()%>";</script>
         <br>
-        <p><% 
-            Cookie [] cookies = request.getCookies(); 
-            for(int i = 0; i < cookies.length; i++ )
-                out.print(cookies[i].getName() + ": " + cookies[i].getValue() + " ");%>
-        </p>
         
     </body>
 </html>

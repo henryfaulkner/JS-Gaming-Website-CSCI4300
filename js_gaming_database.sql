@@ -15,7 +15,7 @@ user and scores have a many to one relationship - user can have many scores
 
 CREATE TABLE user (screenname varchar(255), email varchar(255), pass varchar(255), tokens int, primary key(screenname));
 CREATE TABLE product (id int NOT NULL AUTO_INCREMENT, name varchar(255), picture_name varchar (255), price int, primary key(id));
-CREATE TABLE scores (screenname varchar(255), score int, game varchar(5), foreign key (screenname) references user (screenname));
+CREATE TABLE scores (screenname varchar(255), score int default 0, game varchar(5), foreign key (screenname) references user (screenname) ON DELETE CASCADE);
 CREATE TABLE ownsproduct (screenname varchar(255), id int, foreign key(screenname) references user (screenname), 
 foreign key (id) references product (id));
 
@@ -45,7 +45,12 @@ INSERT into scores() VALUES
 INSERT into scores() VALUES
 ('BOB', 2, 'bird');
 INSERT into scores() VALUES
-('HenryFaulkner', 10000, 'bird'); 
+('HenryFaulkner', 10000, 'bird');
+INSERT into scores() VALUES
+('HenryFaulkner', 0, 'bird');
+INSERT into scores() VALUES
+('fakeaccount', 20, 'snake'); 
+
 
 #ownsproduct
 INSERT into ownsproduct() VALUES
@@ -88,5 +93,6 @@ SELECT screenname
 FROM user 
 WHERE email="hlf46553@uga.edu" and pass="Baseball9";
 
-
-
+DELETE FROM user WHERE screenname=(SELECT screenname WHERE email="fake@account.com" and pass="Fakeaccount69");
+DELETE FROM user WHERE screenname="sd";
+SET SQL_SAFE_UPDATES = 0;

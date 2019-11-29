@@ -49,7 +49,7 @@ h2 {
 }
 
 
-#registerButton, #loginButton 
+#registerButton, #loginButton, #deleteButton
 {
     padding: 15px 32px;
     text-align: center;
@@ -63,7 +63,7 @@ h2 {
 .firstFieldset {
     width:450px;
     grid-area: firstFieldset;  
-    margin-left: 200px;
+    margin-left: 100px;
 }
 
 .secondFieldset
@@ -77,8 +77,6 @@ h2 {
     display: grid;
     grid-template-areas: 'firstFieldset secondFieldset';   
 }
-
-
 
 #cell1
 {
@@ -253,8 +251,15 @@ td
     background-color: gray;
 }
 
-h1 {
+h1 
+{
     padding-top:0px; 
     margin-top: 0px; 
     margin-bottom:10px;
+}
+
+#buttongrid 
+{
+    display: grid;
+    grid-template-areas: 'grid1 grid2';
 }

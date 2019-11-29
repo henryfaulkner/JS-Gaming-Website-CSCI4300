@@ -4,7 +4,7 @@
 function Snake() {
   this.x = 0;
   this.y = 0;
-  this.xspeed = 1;
+  this.xspeed = 0;
   this.yspeed = 0;
   this.total = 1;
   this.tail = [];
@@ -30,8 +30,6 @@ function Snake() {
         var d = dist(this.x, this.y, pos.x, pos.y);
         if(d < 1 && i != 0) {
           print("final score = " + this.total);
-          
-          this.total = 0;
           this.tail = [];
           return true;
         }

@@ -41,7 +41,7 @@
                         <span title = "Name displayed on your profile and high score tables.">
                             <label>Screen Name: </label>
                         </span>
-                        <input type="text" name="name" maxlength="20" size="45" style="margin-right:4px" pattern="[a-zA-Z0-9]+"> <br>
+                        <input type="text" name="name" maxlength="20" size="45" pattern="[a-zA-Z0-9]+"> <br>
                         <span title = "Used to login, not displayed to other users.">
                             <label> Email: </label>
                         </span>
@@ -53,6 +53,7 @@
                         <button type="submit" id = "registerButton">Register</button>
                     </fieldset>
                 </form>
+                <p style="margin-left:0px; text-align: left;">Passwords must be at least 8 characters long and contain<br> at least one uppercase letter, one lowercase letter, and one number.</p>
             </div>
 
             <div class="secondInfo">
@@ -63,11 +64,11 @@
                         <input type="text" name="email" maxlength="25" size="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-left:48px"> <br>
                         <label>Password: </label>
                         <input type="text" name="password" maxlength="20" size="45" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" style="margin-left:25px"> <br>
-                        <button type="submit" id = "loginButton">Login</button>
+                        <button type="submit" id="loginButton" style="display: inline;">Login</button>
+                        <button type="submit" formaction="delete.jsp" id="deleteButton" style="display: inline;">Delete your account</button>  
                     </fieldset>
                 </form>
             </div>
-
         </div>
 
     </body>

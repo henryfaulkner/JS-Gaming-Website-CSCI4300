@@ -22,7 +22,7 @@
                 </ul>
             </nav>
         </div>
-        
+        <h1>DELETED</h1>
         <br>
         <%@ page import="java.util.*" %>
         <%@ page import="java.sql.*" %>
@@ -33,30 +33,15 @@
             String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
             Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
             //checks for matching email & password pair
-            String query = "SELECT screenname FROM user WHERE email=? and pass=?;"; 
+            out.print(email);
+            out.print(password);
+            String query = "DELETE FROM user WHERE screenname=(SELECT screenname WHERE email=? and pass=?);"; 
             PreparedStatement pstmt = connection.prepareStatement( query );
             pstmt.setString(1, email);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.first() == false){  //attempts to move cursor to first & only row 
-                out.println("<h2>Either your email or password are incorrect.</h2>");
-                connection.close();
-            } else {
-                String name = rs.getString(1);
-                out.println("<h2>You have been Logged in!!</h2>");
-                connection.close();
-
-                Cookie cName = new Cookie("Name", name);
-                Cookie cEmail = new Cookie("Email", email);
-                Cookie cPass = new Cookie("Password", password);
-                cName.setMaxAge(60*60);
-                cEmail.setMaxAge(60*60);
-                cPass.setMaxAge(60*60);
-                response.addCookie(cName);
-                response.addCookie(cEmail);
-                response.addCookie(cPass);
-            }
-        } catch(SQLException e){
+            connection.close();
+        } catch(SQLException e) {
             out.println("<h2>Could not connect to Database. :/</h2>");
         }
         %>

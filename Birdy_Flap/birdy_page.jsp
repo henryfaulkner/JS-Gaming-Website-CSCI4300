@@ -34,6 +34,20 @@
         if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
             document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";
     </script>
+    <%//Takes score after each death
+    //pulls highscore from database tied to logged-in screenname
+    //compares recent score to highscore 
+    //if recent score is greater than highscore, 
+    //delete highscore & insert new row contain recent highscore
+    try {
+      String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
+      Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
+        
+      connection.close();
+    } catch(SQLException e) {
+      out.println("<h2>Something went wrong :*(</h2>");
+    }
+    %>
 
     <p style="text-align: center; font-size: 30px;"><strong>Press spacebar to flap</strong></p>
 
