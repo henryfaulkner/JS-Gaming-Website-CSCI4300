@@ -3,6 +3,7 @@
     <head>
         <title>Account Page</title>
         <link rel="stylesheet" href="stylesheet.css">
+        <script src="account.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -53,7 +54,7 @@
                         <button type="submit" id = "registerButton">Register</button>
                     </fieldset>
                 </form>
-                <p style="margin-left:0px; text-align: left;">Passwords must be at least 8 characters long and contain<br> at least one uppercase letter, one lowercase letter, and one number.</p>
+                <p style="margin-left:120px; text-align: left;">Passwords must be at least 8 characters long and contain<br> at least one uppercase letter, one lowercase letter, and one number.</p>
             </div>
 
             <div class="secondInfo">
@@ -64,8 +65,11 @@
                         <input type="text" name="email" maxlength="25" size="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-left:48px"> <br>
                         <label>Password: </label>
                         <input type="text" name="password" maxlength="20" size="45" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" style="margin-left:25px"> <br>
-                        <button type="submit" id="loginButton" style="display: inline;">Login</button>
-                        <button type="submit" formaction="delete.jsp" id="deleteButton" style="display: inline;">Delete your account</button>  
+                        <div id="loginButtons">
+                            <button type="submit" id="loginButton">Login</button>
+                            <button type="submit" formaction="delete.jsp" id="deleteButton">Delete your account</button> 
+                            <button type="submit" id="signoutButton" value="signout">Signout</button>
+                        </div>
                     </fieldset>
                 </form>
             </div>

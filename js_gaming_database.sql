@@ -93,5 +93,6 @@ FROM user
 WHERE email="hlf46553@uga.edu" and pass="Baseball9";
 
 DELETE FROM user WHERE screenname=(SELECT screenname WHERE email="new@account.com" and pass="newAccount9");
-DELETE FROM user WHERE screenname="newaccount";
+DELETE FROM user WHERE screenname="ds";
+INSERT into scores () VALUES ('sd', 0, 'bird');
 SET SQL_SAFE_UPDATES = 0;

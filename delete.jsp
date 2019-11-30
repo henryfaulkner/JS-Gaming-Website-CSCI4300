@@ -46,7 +46,7 @@
             String query2 = "DELETE FROM user WHERE screenname=?"; 
             PreparedStatement pstmt2 = connection.prepareStatement( query2 );
             pstmt2.setString(1, user);
-            pstmt2.executeQuery();
+            pstmt2.executeUpdate();
             connection.close();
         } catch(SQLException e) {
             out.println("<h2>Could not connect to Database. :/</h2>");

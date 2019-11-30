@@ -9,8 +9,6 @@ function setup() {
   snake = new Snake();
   frameRate(10);
   pickLocation();
-  
-
 }
 
 function pickLocation() {

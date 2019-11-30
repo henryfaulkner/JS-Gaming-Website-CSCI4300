@@ -48,16 +48,30 @@ h2 {
     text-align: center;
 }
 
+#loginButtons 
+{
+    text-align: center;
+    width:100%;
+}
 
-#registerButton, #loginButton, #deleteButton
+#loginButton, #deleteButton, #signoutButton
 {
     padding: 15px 32px;
-    text-align: center;
+    background-color: lightgray;
+    color: black;
+    margin-left: 15px;
+    margin-top: 30px;
+    float: left;
+}
+
+#registerButton
+{
+    padding: 15px 32px;
     background-color: lightgray;
     color: black;
     margin-left: 170px;
     margin-top: 30px;
-    
+    float: left;
 }
 
 .firstFieldset {
