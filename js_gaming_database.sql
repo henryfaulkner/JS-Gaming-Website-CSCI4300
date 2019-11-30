@@ -47,10 +47,9 @@ INSERT into scores() VALUES
 INSERT into scores() VALUES
 ('HenryFaulkner', 10000, 'bird');
 INSERT into scores() VALUES
-('HenryFaulkner', 0, 'bird');
+('HenryFaulkner', 0, 'snake');
 INSERT into scores() VALUES
 ('fakeaccount', 20, 'snake'); 
-
 
 #ownsproduct
 INSERT into ownsproduct() VALUES
@@ -93,6 +92,6 @@ SELECT screenname
 FROM user 
 WHERE email="hlf46553@uga.edu" and pass="Baseball9";
 
-DELETE FROM user WHERE screenname=(SELECT screenname WHERE email="fake@account.com" and pass="Fakeaccount69");
-DELETE FROM user WHERE screenname="sd";
+DELETE FROM user WHERE screenname=(SELECT screenname WHERE email="new@account.com" and pass="newAccount9");
+DELETE FROM user WHERE screenname="newaccount";
 SET SQL_SAFE_UPDATES = 0;

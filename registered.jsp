@@ -54,7 +54,15 @@
                 pstmt2.setString(1, name);
                 pstmt2.setString(2, email);
                 pstmt2.setString(3, password);
-                pstmt2.executeUpdate();                
+                pstmt2.executeUpdate(); 
+                String snakeScore = "INSERT into scores () VALUES (?, 0, 'snake');";
+                PreparedStatement pstmt3 = connection.prepareStatement( snakeScore );
+                pstmt3.setString(1, name);
+                pstmt3.executeQuery();
+                String birdScore = "INSERT into scores () VALUES (?, 0, 'bird');";
+                PreparedStatement pstmt4 = connection.prepareStatement( birdScore );
+                pstmt4.setString(1, name);
+                pstmt4.executeQuery();
                 out.println("<h1>You have been Registered!!</h1>");
             } else {
                 out.println("<h2>Email is already in use. Please enter a different email.</h2>");

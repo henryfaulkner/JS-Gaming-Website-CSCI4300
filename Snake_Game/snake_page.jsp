@@ -33,6 +33,7 @@
       t.schedule(new TimerTask() {
         @Override
         public void run() {
+          System.out.println("Hello World");
         Cookie [] cookies = request.getCookies();
 
         if(cookies[3] != null) {
@@ -62,7 +63,7 @@
             }
             connection.close();
           } catch(SQLException e) {
-            out.println("<h2>Something went wrong</h2>");
+            //out.println("<h2>Something went wrong</h2>");
           }
         }
       }

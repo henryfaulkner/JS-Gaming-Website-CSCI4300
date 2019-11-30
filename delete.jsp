@@ -35,11 +35,18 @@
             //checks for matching email & password pair
             out.print(email);
             out.print(password);
-            String query = "DELETE FROM user WHERE screenname=(SELECT screenname WHERE email=? and pass=?);"; 
-            PreparedStatement pstmt = connection.prepareStatement( query );
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
+            String query1 = "SELECT screenname FROM user WHERE email=? and pass=?;";
+            PreparedStatement pstmt1 = connection.prepareStatement( query1 );
+            pstmt1.setString(1, email);
+            pstmt1.setString(2, password);
+            ResultSet rs = pstmt1.executeQuery();
+            rs.first();
+            String user = rs.getString(1);
+            out.print("made it here" + user);
+            String query2 = "DELETE FROM user WHERE screenname=?"; 
+            PreparedStatement pstmt2 = connection.prepareStatement( query2 );
+            pstmt2.setString(1, user);
+            pstmt2.executeQuery();
             connection.close();
         } catch(SQLException e) {
             out.println("<h2>Could not connect to Database. :/</h2>");
