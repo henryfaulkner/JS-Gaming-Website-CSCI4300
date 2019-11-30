@@ -11,6 +11,7 @@
         <script>document.body.style.background = localStorage.bgcolor;</script>
         <div class = "navBar">
             <h3 id="screenname" style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
+            <h3 id="tokens" style="text-align: right; margin-bottom:0px; margin-right:10px; margin-top:0px;"></h3>
             <h1>Sign up for your gaming account now!</h1>
             <h2>Be the highest scorer!!</h2>
             <nav>
@@ -78,8 +79,21 @@
         %>
 
         <script>
-            if(document.getElementById("screenname") && "<%=cName.getValue()%>" != "" && "<%=cName.getName()%>" != "JSESSIONID")
-                document.getElementById("screenname").textContent = "Welcome, " + "<%=cName.getValue()%>";</script>
+            function getCookie(name) {
+                var cookieArr = document.cookie.split(";");
+                for(var i = 0; i < cookieArr.length; i++) {
+                    var cookiePair = cookieArr[i].split("=");
+                    if(name == cookiePair[0].trim()) {
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                }
+                return null;
+            }//getCookie()
+            if(document.getElementById("screenname") && getCookie("Name") != null && getCookie("Tokens") != null){
+                document.getElementById("screenname").textContent = "Welcome, " + getCookie("Name");
+                document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
+            }
+        </script>
         <br>
         
     </body>

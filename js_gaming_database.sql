@@ -96,3 +96,5 @@ DELETE FROM user WHERE screenname=(SELECT screenname WHERE email="new@account.co
 DELETE FROM user WHERE screenname="ds";
 INSERT into scores () VALUES ('sd', 0, 'bird');
 SET SQL_SAFE_UPDATES = 0;
+
+INSERT into user () VALUES ('HenryFaulkner', 'hlf46553@uga.edu', 'Baseball9', 10000);

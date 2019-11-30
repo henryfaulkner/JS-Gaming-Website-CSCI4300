@@ -15,9 +15,10 @@
     <script>document.body.style.background = localStorage.bgcolor;</script>
     <div class = "navBar">
       <h3 id="screenname" style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
+      <h3 id="tokens" style="text-align: right; margin-bottom:0px; margin-right:10px; margin-top:0px;"></h3>
       <h1>Flappy Bird</h1>
       <nav>
-        <ul class="mainMenu">
+        <ul class="mainMenu" style="margin-bottom: 5px;">
           <li class="subnav"><a href="../index.jsp">Home Page</a></li>
           <li class="subnav"><a href="../Snake_Game/snake_page.jsp">Snake Game</a></li>
           <li class="subnav"><a href="../Birdy_Flap/birdy_page.jsp">Flappy Bird</a></li>
@@ -31,8 +32,20 @@
     <%@ page import="java.sql.*" %>
     <%Cookie [] cookies = request.getCookies();%>
     <script>
-        if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
-            document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";
+      function getCookie(name) {
+        var cookieArr = document.cookie.split(";");
+        for(var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            if(name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+      }//getCookie()
+      if(document.getElementById("screenname") && getCookie("Name") != null && getCookie("Tokens") != null){
+          document.getElementById("screenname").textContent = "Welcome, " + getCookie("Name");
+          document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
+      }
     </script>
     <%//Takes score after each death
     //pulls highscore from database tied to logged-in screenname

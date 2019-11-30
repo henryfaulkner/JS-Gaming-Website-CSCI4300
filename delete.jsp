@@ -9,6 +9,7 @@
         <script>document.body.style.background = localStorage.bgcolor;</script>
         <div class = "navBar">
             <h3 id="screenname" style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
+            <h3 id="tokens" style="text-align: right; margin-bottom:0px; margin-right:10px; margin-top:0px;"></h3>
             <h1>Sign up for your gaming account now!</h1>
             <h2>Be the highest scorer!!</h2>
             <nav>
@@ -33,8 +34,6 @@
             String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
             Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
             //checks for matching email & password pair
-            out.print(email);
-            out.print(password);
             String query1 = "SELECT screenname FROM user WHERE email=? and pass=?;";
             PreparedStatement pstmt1 = connection.prepareStatement( query1 );
             pstmt1.setString(1, email);
@@ -42,7 +41,6 @@
             ResultSet rs = pstmt1.executeQuery();
             rs.first();
             String user = rs.getString(1);
-            out.print("made it here" + user);
             String query2 = "DELETE FROM user WHERE screenname=?"; 
             PreparedStatement pstmt2 = connection.prepareStatement( query2 );
             pstmt2.setString(1, user);
@@ -55,7 +53,20 @@
         
         <%Cookie [] cookies = request.getCookies();%>
         <script>
-            if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
-                document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";</script>
+            function getCookie(name) {
+                var cookieArr = document.cookie.split(";");
+                for(var i = 0; i < cookieArr.length; i++) {
+                    var cookiePair = cookieArr[i].split("=");
+                    if(name == cookiePair[0].trim()) {
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                }
+                return null;
+            }//getCookie()
+            if(document.getElementById("screenname") && getCookie("Name") != null && getCookie("Tokens") != null){
+                document.getElementById("screenname").textContent = "Welcome, " + getCookie("Name");
+                document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
+            }
+        </script>
     </body>
 </html>

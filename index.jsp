@@ -9,6 +9,7 @@
     <body>
         <div class = "navBar">
             <h3 id="screenname"style="text-align: right; margin-bottom:0px; margin-right:10px;"></h3>
+            <h3 id="tokens" style="text-align: right; margin-bottom:0px; margin-right:10px; margin-top:0px;"></h3>
             <h1>JavaScript Gaming Library</h1>
             <nav>
                 <ul class="mainMenu">
@@ -25,8 +26,21 @@
         <%@ page import="java.sql.*" %>
         <%Cookie [] cookies = request.getCookies();%>
         <script>
-            if(document.getElementById("screenname") && "<%=cookies[0].getValue()%>" != "" && "<%=cookies[0].getName()%>" != "JSESSIONID")
-                document.getElementById("screenname").textContent = "Welcome, " + "<%=cookies[0].getValue()%>";
+            function getCookie(name) {
+                var cookieArr = document.cookie.split(";");
+                for(var i = 0; i < cookieArr.length; i++) {
+                    var cookiePair = cookieArr[i].split("=");
+                    if(name == cookiePair[0].trim()) {
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                }
+                return null;
+            }//getCookie()
+            console.log(getCookie("Name"));
+            if(document.getElementById("screenname") && getCookie("Name") != null && getCookie("Tokens") != null){
+                document.getElementById("screenname").textContent = "Welcome, " + getCookie("Name");
+                document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
+            }
         </script>
 
         <div class = "mainPage">
