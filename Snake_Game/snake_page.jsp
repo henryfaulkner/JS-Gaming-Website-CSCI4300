@@ -38,50 +38,80 @@
 
     //"JSESSIONID" doesn't != works sometimes when not logged in; 
     //"JSESSIONID" == works whenever but does log highscores for users
-    
-    if(cookies[0].getValue() != "" && cookies[0].getName() != "JSESSIONID") { // 0 is score; 1 is screenname
+    Cookie user = cookies[0];
+    Cookie score = cookies[0];
+    Cookie tokens = cookies[0];
+    for(int i = 0; i < cookies.length; i++){
+      if(cookies[i].getName().equals("Name")){
+        user = cookies[i];
+      } else if(cookies[i].getName().equals("snakeScore")){
+        score = cookies[i];
+      } else if(cookies[i].getName().equals("Tokens")){
+        tokens = cookies[i];
+      }
+    }
+    //if(cookies[0].getValue() != "" && cookies[0].getName() != "JSESSIONID") { // 0 is score; 1 is screenname     
       try {
         String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
         Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
         String query1 = "SELECT score FROM scores WHERE game='snake' and screenname=?"; 
         PreparedStatement pstmt1 = connection.prepareStatement( query1 );
-        pstmt1.setString(1, cookies[1].getValue());
+        pstmt1.setString(1, user.getValue());
         ResultSet rs = pstmt1.executeQuery();
         rs.first();
-        int score = rs.getInt(1); //assumes the user has a score 
-        if(Integer.parseInt(cookies[0].getValue()) > score){
+        int oldScore = rs.getInt(1); //assumes the user has a score 
+        
+        if(Integer.parseInt(score.getValue()) > oldScore){
           String query2 = "DELETE FROM scores WHERE game='snake' and screenname=?";
           PreparedStatement pstmt2 = connection.prepareStatement( query2 );
-          pstmt2.setString(1, cookies[1].getValue());
+          pstmt2.setString(1, user.getValue());
           pstmt2.executeUpdate();
           String query3 = "INSERT into scores() VALUES (?, ?, 'snake');";
           PreparedStatement pstmt3 = connection.prepareStatement( query3 );
-          pstmt3.setString(1, cookies[1].getValue());
-          pstmt3.setString(2, cookies[0].getValue());
+          pstmt3.setString(1, user.getValue());
+          pstmt3.setString(2, score.getValue());
           pstmt3.executeUpdate();
-        }
+        }      
+        
+        connection.close();
+      } catch(SQLException e) {
+        out.println("<h2>Something went wrong</h2>");
+      }
+      
+      try {
+        String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
+        Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
 
         //INCREMENTS TOKENS ON EACH LOAD (ESENTIALLY, EACH GAME); 
         //HAVE TO BE SIGNED IN BUT WHO CARES ANYMORE lol
         String query4 = "SELECT tokens FROM user WHERE screenname=?"; 
         PreparedStatement pstmt4 = connection.prepareStatement( query4 );
-        pstmt4.setString(1, cookies[1].getValue());
+        pstmt4.setString(1, user.getValue());
         ResultSet rs2 = pstmt4.executeQuery();
         rs2.first();
-        int tokens = rs2.getInt(1) + 1;
+        int locTokens = rs2.getInt(1) + 1;
         String query5 = "UPDATE user SET tokens=? WHERE screenname=?"; 
         PreparedStatement pstmt5 = connection.prepareStatement( query5 );
-        pstmt5.setString(1, tokens+"");
-        pstmt5.setString(2, cookies[1].getValue());
+        pstmt5.setString(1, locTokens+"");
+        pstmt5.setString(2, user.getValue());
+        tokens.setMaxAge(0);
+        response.addCookie(tokens);
+        tokens.setPath("/Snake_Game");
+        tokens.setValue(locTokens+"");
+        tokens.setMaxAge(60*60);
+        response.addCookie(tokens);
+        //out.print("<h2>Hey I made it here</h2>");
+        //tokens.setMaxAge(0);  
+        //response.addCookie(tokens);
+        //Cookie newCookie = new Cookie("Tokens", locTokens+"");
+        //newCookie.setMaxAge(24*60*60);
+        //response.addCookie(newCookie);
         pstmt5.executeUpdate();
-        cookies[4].setValue(tokens+"");
-        //out.println("<h2>"+cookies[4].getValue()+"</h2>");
         connection.close();
-      } catch(SQLException e) {
-        //out.println("<h2>Something went wrong</h2>");
+      } catch (SQLException e){
+        out.println("<h2>Something went wrong</h2>");
       }
-    }
-      
+    //}
     %>
     <script>
         function getCookie(name) {
@@ -96,11 +126,11 @@
         }//getCookie()
         if(document.getElementById("screenname") && getCookie("Name") != null && getCookie("Tokens") != null){
             document.getElementById("screenname").textContent = "Welcome, " + getCookie("Name");
-            document.getElementById("tokens").textContent = "Tokens: " + "<%=cookies[4].getValue()%>"; 
+            document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
         }
     </script>
     <p style="text-align: center; font-size: 30px;"><strong>Use arrow keys to move</strong></p>
     <p id="score" style="text-align: right; font-size:40px;padding-right:250px;"><strong>Score: </strong></p>
-    <script>document.getElementById("score").textContent += getCookie("Score");</script>
+    <script>document.getElementById("score").textContent += getCookie("snakeScore");</script>
   </body>
 </html>

@@ -25,7 +25,7 @@ function draw() {
     print(snake.total);
     p.position(900, 400);*/  
     if(document.cookie != ""){
-      document.cookie = "Score=" + snake.total;
+      document.cookie = "snakeScore=" + snake.total;
     }
     location.reload();
     console.log("no reload?");

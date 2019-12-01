@@ -36,7 +36,7 @@ function draw() {
       textSize(35);
       text("Press 'r' to start over.", 200, 250);
       if(document.cookie != ""){
-        document.cookie = "Score=" + score;
+        document.cookie = "birdScore=" + score;
       }
       score = 0; //resets score
       noLoop();

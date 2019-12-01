@@ -27,6 +27,7 @@
         <%@ page import="java.util.*" %>
         <%@ page import="java.sql.*" %>
         <%Cookie [] cookies = request.getCookies();%>
+        
         <script>
             function getCookie(name) {
                 var cookieArr = document.cookie.split(";");

@@ -24,7 +24,16 @@
         </div>
         <%@ page import="java.util.*" %>
         <%@ page import="java.sql.*" %>
-        <%Cookie [] cookies = request.getCookies();
+        <%Cookie [] cookies = request.getCookies();%>
+        <%
+        Cookie cSScore = new Cookie("snakeScore", "0");
+        cSScore.setPath("/WebDev_Final_TomCat/Snake_Game");
+        Cookie cBScore = new Cookie("birdScore", "0");
+        cBScore.setPath("/WebDev_Final_TomCat/Birdy_Flap");
+        cSScore.setMaxAge(60*60);
+        cBScore.setMaxAge(60*60);
+        response.addCookie(cBScore);
+        response.addCookie(cSScore);
         %>
         <script>
             function getCookie(name) {

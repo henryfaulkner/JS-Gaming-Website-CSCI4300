@@ -41,6 +41,7 @@
     //"JSESSIONID" doesn't != works sometimes when not logged in (cached cookies); 
     //"JSESSIONID" == works whenever but does log highscores for users
     if(cookies[0].getValue() != "" && cookies[0].getName() != "JSESSIONID") { // 0 is score; 1 is screenname
+      //out.print("<h2>Hey I made it here</h2>");
       //first, find user's current score for snake_page
       //then, compare that to just achieved score 
       //if achieved score is > current, delete current and insert achieved
@@ -54,7 +55,7 @@
         ResultSet rs = pstmt1.executeQuery();
         rs.first();
         int score = rs.getInt(1); //assumes the user has a score 
-        if(Integer.parseInt(cookies[0].getValue()) > score){
+        if(Integer.parseInt(cookies[0].getValue()) > score){          
           String query2 = "DELETE FROM scores WHERE game='bird' and screenname=?";
           PreparedStatement pstmt2 = connection.prepareStatement( query2 );
           pstmt2.setString(1, cookies[1].getValue());
@@ -101,7 +102,7 @@
         }//getCookie()
         if(document.getElementById("screenname") && getCookie("Name") != null && getCookie("Tokens") != null){
             document.getElementById("screenname").textContent = "Welcome, " + getCookie("Name");
-            document.getElementById("tokens").textContent = "Tokens: " + "<%=cookies[4].getValue()%>";
+            document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
         }
     </script>
 

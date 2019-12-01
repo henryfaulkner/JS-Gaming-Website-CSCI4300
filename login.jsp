@@ -57,6 +57,7 @@
                 Cookie cEmail = new Cookie("Email", email);
                 Cookie cPass = new Cookie("Password", password);
                 Cookie cTokens = new Cookie("Tokens", tokens+"");
+                //cTokens.setPath("/WebDev_Final_TomCat/Snake_Game");
                 cName.setMaxAge(60*60);
                 cEmail.setMaxAge(60*60);
                 cPass.setMaxAge(60*60);
