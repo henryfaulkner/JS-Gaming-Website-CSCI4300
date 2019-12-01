@@ -32,16 +32,6 @@
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        Cookie cName = new Cookie("Name", name);
-        Cookie cEmail = new Cookie("Email", email);
-        Cookie cPass = new Cookie("Password", password);
-        cName.setMaxAge(60*60);
-        cEmail.setMaxAge(60*60);
-        cPass.setMaxAge(60*60);
-        response.addCookie(cName);
-        response.addCookie(cEmail);
-        response.addCookie(cPass);
-
         try {
             String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
             Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
@@ -64,6 +54,27 @@
                 PreparedStatement pstmt4 = connection.prepareStatement( birdScore );
                 pstmt4.setString(1, name);
                 pstmt4.executeUpdate();
+                String query2 = "SELECT tokens FROM user WHERE screenname=?;";
+                PreparedStatement pstmt5 = connection.prepareStatement( query2 );
+                pstmt5.setString(1, name);
+                ResultSet rs2 = pstmt5.executeQuery();
+                rs2.first();
+                int tokens = rs2.getInt(1);
+                connection.close();
+
+                Cookie cName = new Cookie("Name", name);
+                Cookie cEmail = new Cookie("Email", email);
+                Cookie cPass = new Cookie("Password", password);
+                Cookie cTokens = new Cookie("Tokens", tokens+"");
+                cName.setMaxAge(60*60);
+                cEmail.setMaxAge(60*60);
+                cPass.setMaxAge(60*60);
+                cTokens.setMaxAge(60*60);
+                response.addCookie(cName);
+                response.addCookie(cEmail);
+                response.addCookie(cPass);
+                response.addCookie(cTokens);
+
                 out.println("<h1>You have been Registered!!</h1>");
             } else {
                 out.println("<h2>Email is already in use. Please enter a different email.</h2>");

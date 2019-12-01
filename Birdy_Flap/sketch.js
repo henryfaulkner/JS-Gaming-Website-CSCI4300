@@ -35,8 +35,10 @@ function draw() {
       text("Score: " + floor(score),200,200);
       textSize(35);
       text("Press 'r' to start over.", 200, 250);
+      if(document.cookie != ""){
+        document.cookie = "Score=" + score;
+      }
       score = 0; //resets score
-      
       noLoop();
       //trying to restart game 
       startLoop = false; //continues looping on space
@@ -71,8 +73,9 @@ function keyPressed(){
     spaceStart = true;
     loop();
   } else if (key == 'r' && startLoop == false) {
-    startLoop = true;
-    loop();
+    location.reload();
+    //startLoop = true;
+    //loop();
   } else if(key == " "){
     bird.jump(); 
   }

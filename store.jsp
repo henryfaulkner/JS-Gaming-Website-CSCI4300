@@ -48,14 +48,14 @@
                 <h3>Forest Green Web Background<br>Cost: 5 tokens</h3>
             </div>
             <div id="storeItem2">
-                    <br>
-                    <img src="Store_Pictures/lightskyblue.png" alt="Sky Blue" style="width:150px; height:150px;"><br>
-                    <h3>Sky Blue Web Background<br>Cost: 10 tokens</h3>
+                <br>
+                <img src="Store_Pictures/lightskyblue.png" alt="Sky Blue" style="width:150px; height:150px;"><br>
+                <h3>Sky Blue Web Background<br>Cost: 10 tokens</h3>
             </div>
             <div id="storeItem3">
-                    <br>
-                    <img src="Store_Pictures/khaki.png" alt="Khaki" style="width:150px; height:150px;"><br>
-                    <h3>Khaki Web Background<br>Cost: 0 tokens</h3>
+                <br>
+                <img src="Store_Pictures/khaki.png" alt="Khaki" style="width:150px; height:150px;"><br>
+                <h3>Khaki Web Background<br>Cost: 0 tokens</h3>
             </div>
         </div>  
         
