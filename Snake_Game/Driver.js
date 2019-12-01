@@ -21,15 +21,14 @@ function pickLocation() {
 function draw() {
   background(0);
   if (snake.death()) {
-    p = createP("Score: " + snake.total);
+    /*p = createP("Score: " + snake.total);
     print(snake.total);
-    p.position(900, 400);  
+    p.position(900, 400);*/  
     if(document.cookie != ""){
-      var now = new Date;
-      var utc_timestamp = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate() , 
-        now.getUTCHours(), now.getUTCMinutes() + 1, now.getUTCSeconds(), now.getUTCMilliseconds());
-      document.cookie = "score=" + snake.total + ";expires=" + now;
+      document.cookie = "Score=" + snake.total;
     }
+    location.reload();
+    console.log("no reload?");
     noLoop();
     snake.x = 0;
     snake.y = 0;
