@@ -77,7 +77,7 @@
       
       connection.close();
     } catch(SQLException e) {
-      out.println("<h2>Something went wrong</h2>");
+      
     }
     
     try {
@@ -96,7 +96,6 @@
       PreparedStatement pstmt5 = connection.prepareStatement( query5 );
       pstmt5.setString(1, locTokens+"");
       pstmt5.setString(2, user.getValue());
-      out.print("<h2>"+locTokens+"</h2>");
       tokens.setMaxAge(0);  
       response.addCookie(tokens);
       Cookie newCookie = new Cookie("Tokens", locTokens+"");
@@ -105,7 +104,7 @@
       pstmt5.executeUpdate();
       connection.close();
     } catch (SQLException e){
-      out.println("<h2>Something went wrong</h2>");
+     
     }
     %>
 
