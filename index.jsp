@@ -14,8 +14,8 @@
             <nav>
                 <ul class="mainMenu">
                     <li class="subnav"><a href="index.jsp">Home Page</a></li>
-                    <li class="subnav"><a href="Snake_Game/snake_page.jsp">Snake Game</a></li>
-                    <li class="subnav"><a href="Birdy_Flap/birdy_page.jsp">Flappy Bird</a></li>
+                    <li class="subnav"><a href="snake_page.jsp">Snake Game</a></li>
+                    <li class="subnav"><a href="birdy_page.jsp">Flappy Bird</a></li>
                     <li class="subnav"><a href="high_scores.jsp">High Scores</a></li>
                     <li class="subnav"><a href="account_page.jsp">Account Info</a></li>
                     <li class="subnav" style="margin-left:1%"><a href="store.jsp">Store</a></li>
@@ -27,9 +27,9 @@
         <%Cookie [] cookies = request.getCookies();%>
         <%
         Cookie cSScore = new Cookie("snakeScore", "0");
-        cSScore.setPath("/WebDev_Final_TomCat/Snake_Game");
+        //cSScore.setPath("/WebDev_Final_TomCat/Snake_Game");
         Cookie cBScore = new Cookie("birdScore", "0");
-        cBScore.setPath("/WebDev_Final_TomCat/Birdy_Flap");
+        //cBScore.setPath("/WebDev_Final_TomCat/Birdy_Flap");
         cSScore.setMaxAge(60*60);
         cBScore.setMaxAge(60*60);
         response.addCookie(cBScore);

@@ -16,8 +16,8 @@
             <nav>
                 <ul class="mainMenu">
                     <li class="subnav"><a href="index.jsp">Home Page</a></li>
-                    <li class="subnav"><a href="Snake_Game/snake_page.jsp">Snake Game</a></li>
-                    <li class="subnav"><a href="Birdy_Flap/birdy_page.jsp">Flappy Bird</a></li>
+                    <li class="subnav"><a href="snake_page.jsp">Snake Game</a></li>
+                    <li class="subnav"><a href="birdy_page.jsp">Flappy Bird</a></li>
                     <li class="subnav"><a href="high_scores.jsp">High Scores</a></li>
                     <li class="subnav"><a href="account_page.jsp">Account Info</a></li>
                     <li class="subnav" style="margin-left:1%"><a href="store.jsp">Store</a></li>
