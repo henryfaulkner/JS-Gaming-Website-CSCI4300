@@ -86,5 +86,8 @@
                 document.getElementById("tokens").textContent = "Tokens: " + getCookie("Tokens");
             }
         </script>
+        <script>
+            document.body.style.background = 'khaki';
+            localStorage.bgcolor = 'khaki'; </script>
     </body>
 </html>

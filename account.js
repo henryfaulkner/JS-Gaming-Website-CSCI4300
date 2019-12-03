@@ -4,6 +4,8 @@ window.onload = function(){
 }
 
 function signOut() {
+    document.body.style.background = 'khaki';
+    localStorage.bgcolor = 'khaki';
     document.cookie = "Name= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "Email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "Password= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";

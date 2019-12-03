@@ -76,9 +76,9 @@
 	            ResultSet rs = pstmt.executeQuery( );
 	            rs.first();
 				int price = rs.getInt(1);
-				String query3 = "SELECT screenname FROM ownsproduct WHERE screenname=? and id=2";
-				pstmt5.setString(1, screenname);
+				String query3 = "SELECT screenname FROM ownsproduct WHERE screenname=? and id=2";				
 				PreparedStatement pstmt5 = connection.prepareStatement(query3);
+				pstmt5.setString(1, screenname);
 				ResultSet rs3 = pstmt5.executeQuery();
 	            
 	            if(rs3.first()){

@@ -34,6 +34,7 @@
         cBScore.setMaxAge(60*60);
         response.addCookie(cBScore);
         response.addCookie(cSScore);
+
         %>
         <script>
             function getCookie(name) {
