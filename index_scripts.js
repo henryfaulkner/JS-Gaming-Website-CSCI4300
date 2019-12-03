@@ -13,7 +13,7 @@ window.onload = function()
 
 function goToSnake()
 {
-    window.location.href = "Snake_Game/snake_page.jsp";
+    window.location.href = "snake_page.jsp";
 }
 
 function goToHighScores()

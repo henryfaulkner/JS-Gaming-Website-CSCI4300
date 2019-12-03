@@ -88,7 +88,7 @@
 					PreparedStatement pstmt2 = connection.prepareStatement( query2 );
 					pstmt2.setString(1, screenname);
 					ResultSet rs2 = pstmt2.executeQuery();
-					rs2.first();
+					if(rs2.first()){
 		            int currentTokens = rs2.getInt(1);
 					
 					//subtracting the price of the background
@@ -112,7 +112,10 @@
 	                response.addCookie(cTokens);
 		            
 		            //confirmation message
-		            out.println("<h1> Khaki Web Background purchased </h1>");
+					out.println("<h1> Khaki Web Background purchased </h1>");
+				} else {
+					out.print("<h2>Please log in.</h2>");
+				}
 	            }
        		}
         %>
