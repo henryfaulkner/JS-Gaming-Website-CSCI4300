@@ -112,7 +112,12 @@
 					pstmt3.setString(1, currentTokens+"");
 					pstmt3.setString(2, screenname);
 		            pstmt3.executeUpdate();
-		            
+					
+					//updates ownProduct table 
+					String addProduct = "INSERT into ownsproduct () VALUES (?, 1)";
+					PreparedStatement pstmt4 = connection.prepareStatement(addProduct);
+					pstmt4.setString(1, screenname);
+					pstmt4.executeUpdate();
 		            %>
 		            <script>document.body.style.background = 'forestgreen';
 		            localStorage.bgcolor = 'forestgreen'; </script>
