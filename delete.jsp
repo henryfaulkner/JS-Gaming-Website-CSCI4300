@@ -66,7 +66,7 @@
             response.addCookie(cPass);
             connection.close();
         } catch(SQLException e) {
-            out.println("<h2>Could not connect to Database. :/</h2>");
+            out.println("<h2>Could not connect to Database.</h2>");
         }
         %>
         

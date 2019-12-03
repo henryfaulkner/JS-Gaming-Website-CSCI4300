@@ -16,7 +16,7 @@ user and scores have a many to one relationship - user can have many scores
 CREATE TABLE user (screenname varchar(255), email varchar(255), pass varchar(255), tokens int, primary key(screenname));
 CREATE TABLE product (id int NOT NULL AUTO_INCREMENT, name varchar(255), picture_name varchar (255), price int, primary key(id));
 CREATE TABLE scores (screenname varchar(255), score int default 0, game varchar(5), foreign key (screenname) references user (screenname) ON DELETE CASCADE);
-CREATE TABLE ownsproduct (screenname varchar(255), id int, foreign key(screenname) references user (screenname), 
+CREATE TABLE ownsproduct (screenname varchar(255), id int, foreign key(screenname) references user (screenname) ON DELETE CASCADE, 
 foreign key (id) references product (id));
 CREATE TABLE ADMIN (screenname varchar(255), email varchar(255), pass varchar(255), foreign key(screenname) references user (screenname));
 
@@ -97,9 +97,12 @@ FROM user
 WHERE email="hlf46553@uga.edu" and pass="Baseball9";
 
 DELETE FROM user WHERE screenname=(SELECT screenname WHERE email="new@account.com" and pass="newAccount9");
-DELETE FROM user WHERE screenname="ds";
+DELETE FROM user WHERE screenname="newaccount";
+DELETE FROM user WHERE screenname=?;
 INSERT into scores () VALUES ('sd', 0, 'bird');
 SET SQL_SAFE_UPDATES = 0;
+
+drop table ownsproduct;
 
 INSERT into user () VALUES ('HenryFaulkner', 'hlf46553@uga.edu', 'Baseball9', 10000);
 DELETE from scores where screenname="HenryFaulkner" and game='bird';
@@ -109,3 +112,4 @@ SELECT price FROM product WHERE name = 'Khaki Web Background';
 SELECT tokens FROM user WHERE name = 'HenryALT';
 INSERT into ownsproduct () VALUES ('HenryFaulkner', 2);
 SELECT screenname FROM ownsproduct WHERE screenname='HenryALT' and id=2;
+Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails (`jsgamedb`.`ownsproduct`, CONSTRAINT `ownsproduct_ibfk_1` FOREIGN KEY (`screenname`) REFERENCES `user` (`screenname`))
