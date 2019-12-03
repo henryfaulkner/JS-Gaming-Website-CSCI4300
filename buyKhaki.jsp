@@ -47,17 +47,19 @@
 		<br><br>
         <%
        		String tokens = null;
-        	String screenname = null;
+			String screenname = null;
+			Cookie ogTokens = cookies[0];
        		for(Cookie c:cookies)  
        		{
        			if(c.getName().equals("Tokens"))
        			{
-       				tokens = c.getValue();
+					tokens = c.getValue();
+					ogTokens = c;
        			}
-       			else if(c.getName().equals("Screenname"))
-       			{
-       				screenname = c.getValue(); 	
-       			}
+       			else if(c.getName().equals("Name"))
+				{
+					screenname = c.getValue(); 	
+				}
        		}
        		
        		if(tokens == null)
@@ -82,25 +84,31 @@
 	            else
 	            {
 	            	//getting the user's current tokens
-	            	String query2 = "SELECT tokens FROM user WHERE name = " + screenname;
-	            	PreparedStatement pstmt2 = connection.prepareStatement( query2 );
-		            ResultSet rs2 = pstmt.executeQuery();
-		            rs2.next();
+	            	String query2 = "SELECT tokens FROM user WHERE screenname = ?";
+					PreparedStatement pstmt2 = connection.prepareStatement( query2 );
+					pstmt2.setString(1, screenname);
+					ResultSet rs2 = pstmt2.executeQuery();
+					rs2.first();
 		            int currentTokens = rs2.getInt(1);
-		            
-		            //subtracting the price of the background
+					
+					//subtracting the price of the background
 		            currentTokens -= price;
 		            
 		            //updating the user's current tokens
-		            String updateQuery = "UPDATE user SET tokens = " + currentTokens + "WHERE name = " + screenname;
-		            PreparedStatement pstmt3 = connection.prepareStatement(updateQuery);
-		            ResultSet rs3 = pstmt.executeQuery();
+		            String updateQuery = "UPDATE user SET tokens = ? WHERE screenname = ?";
+					PreparedStatement pstmt3 = connection.prepareStatement(updateQuery);
+					pstmt3.setString(1, currentTokens+"");
+					pstmt3.setString(2, screenname);
+		            pstmt3.executeUpdate();
 		            %>
 		            <script>
 		            document.body.style.background = 'khaki';
 		            localStorage.bgcolor = 'khaki'; </script>
-		            	<% 
-		            Cookie cTokens = new Cookie("Tokens", currentTokens+"");
+						<% 
+					ogTokens.setMaxAge(0);
+					response.addCookie(ogTokens);
+					Cookie cTokens = new Cookie("Tokens", currentTokens+"");
+					cTokens.setMaxAge(24*60*60);
 	                response.addCookie(cTokens);
 		            
 		            //confirmation message

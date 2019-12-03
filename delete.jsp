@@ -30,6 +30,19 @@
         <% String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        Cookie [] cookies = request.getCookies();
+        Cookie cUser = cookies[0];
+        Cookie cPass = cookies[0];
+        Cookie cEmail = cookies[0];
+        for(int i = 0; i < cookies.length; i++){
+            if(cookies[i].getName().equals("Name")){
+              cUser = cookies[i];
+            } else if(cookies[i].getName().equals("Email")){
+              cEmail = cookies[i];
+            } else if(cookies[i].getName().equals("Password")){
+              cPass = cookies[i];
+            }
+          }
         try {
             String dbURL = "jdbc:mysql://127.0.0.1:3306/jsgamedb";
             Connection connection = DriverManager.getConnection(dbURL, "root", "baseball9");
@@ -45,13 +58,18 @@
             PreparedStatement pstmt2 = connection.prepareStatement( query2 );
             pstmt2.setString(1, user);
             pstmt2.executeUpdate();
+            cUser.setMaxAge(0);  
+            response.addCookie(cUser);
+            cEmail.setMaxAge(0);  
+            response.addCookie(cEmail);
+            cPass.setMaxAge(0);  
+            response.addCookie(cPass);
             connection.close();
         } catch(SQLException e) {
             out.println("<h2>Could not connect to Database. :/</h2>");
         }
         %>
         
-        <%Cookie [] cookies = request.getCookies();%>
         <script>
             function getCookie(name) {
                 var cookieArr = document.cookie.split(";");

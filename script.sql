@@ -18,7 +18,6 @@ CREATE TABLE product (id int NOT NULL AUTO_INCREMENT, name varchar(255), picture
 CREATE TABLE scores (screenname varchar(255), score int default 0, game varchar(5), foreign key (screenname) references user (screenname) ON DELETE CASCADE);
 CREATE TABLE ownsproduct (screenname varchar(255), id int, foreign key(screenname) references user (screenname), 
 foreign key (id) references product (id));
-CREATE TABLE ADMIN (screenname varchar(255), email varchar(255), pass varchar(255), foreign key(screenname) references user (screenname));
 
 /*
 sample insertions
@@ -26,9 +25,9 @@ sample insertions
 
 #users
 INSERT into user () VALUES 
-('ELIT3_GAMER', 'email@email.com', '1234', 0);
+('ELIT3_GAMER', 'email@email.com', '12345678Ab', 0);
 INSERT into user () VALUES
-('BOB', 'email2@email.com', '2122', 0);
+('BOB', 'email2@email.com', '12345678Ba', 0);
 
 #products
 INSERT into product (name, picture_name, price) VALUES
@@ -62,9 +61,6 @@ INSERT into ownsproduct() VALUES
 INSERT into ownsproduct() VALUES
 ('ELIT3_GAMER', 3);
 
-#ADMIN
-INSERT into ADMIN () VALUES ('HenryFaulkner', 'hlf46553@uga.edu', 'Baseball9');
-
 
 /*
 sample queries
@@ -90,7 +86,7 @@ SELECT email
 FROM user
 WHERE email="hlf46553@uga.edu";
 
-DELETE from user where screenname="HenryFaulkner";
+DELETE from user where screenname="Henry1";
 
 SELECT screenname
 FROM user 
@@ -102,10 +98,13 @@ INSERT into scores () VALUES ('sd', 0, 'bird');
 SET SQL_SAFE_UPDATES = 0;
 
 INSERT into user () VALUES ('HenryFaulkner', 'hlf46553@uga.edu', 'Baseball9', 10000);
-DELETE from scores where screenname="HenryFaulkner" and game='bird';
 
-UPDATE user SET tokens=1 WHERE screenname='HenryALT';
-SELECT price FROM product WHERE name = 'Khaki Web Background';
-SELECT tokens FROM user WHERE name = 'HenryALT';
-INSERT into ownsproduct () VALUES ('HenryFaulkner', 2);
-SELECT screenname FROM ownsproduct WHERE screenname='HenryALT' and id=2;
+SELECT screenname FROM user WHERE email='hlf46553@uga.edu' and pass='Baseball9';
+
+SELECT tokens FROM user WHERE screenname='HenryFaulkner';
+
+SELECT score FROM scores WHERE game='bird' and screenname='HenryFaulkner';
+
+INSERT into scores () VALUES ('HenryFaulkner', 0, 'bird');
+
+INSERT into scores () VALUES ('HenryFaulkner', 0, 'snake');

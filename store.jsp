@@ -58,6 +58,8 @@
                 <h3>Khaki Web Background<br>Cost: 0 tokens</h3>
             </div>
         </div>  
+        <br><br><br><br>
+        <h1 id = "storeMessage" style = "text-align: center; margin-bottom: 100px;"></h1>
         
     </body>
 </html>

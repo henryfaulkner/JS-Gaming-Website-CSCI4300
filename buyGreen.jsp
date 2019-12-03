@@ -48,17 +48,19 @@
         <%
        		String tokens = null;
         	String screenname = null;
-       		for(Cookie c:cookies)  
-       		{
-       			if(c.getName().equals("Tokens"))
-       			{
-       				tokens = c.getValue();
-       			}
-       			else if(c.getName().equals("Screenname"))
-       			{
-       				screenname = c.getValue(); 	
-       			}
-       		}
+			Cookie ogTokens = cookies[0];
+			for(Cookie c:cookies)  
+			{
+				if(c.getName().equals("Tokens"))
+				{
+				 tokens = c.getValue();
+				 ogTokens = c;
+				}
+				else if(c.getName().equals("Name"))
+				{
+					screenname = c.getValue(); 	
+				}
+			}
        		
        		if(tokens == null)
        		{
@@ -75,32 +77,50 @@
 	            rs.next();
 	            int price = rs.getInt(1);
 	            
-	            if(price > Integer.parseInt(tokens)) //item too expensive
+	            String query3 = "SELECT screenname FROM ownsproduct WHERE screenname=? and id=1";
+				PreparedStatement pstmt5 = connection.prepareStatement(query3);
+				pstmt5.setString(1, screenname);
+				ResultSet rs3 = pstmt5.executeQuery();
+	            
+	            if(rs3.first()){
+					out.println("<h1> You already own this item. </h1>");
+					%>
+		            <script>document.body.style.background = 'forestgreen';
+		            localStorage.bgcolor = 'forestgreen';</script>
+					<%
+				} 
+				else if(price > Integer.parseInt(tokens)) //item too expensive
 	            {
 	       			out.println("<h1> Not enough tokens to purchase this item. </h1>");
-	            }
+				} 
 	            else
 	            {
 	            	//getting the user's current tokens
-	            	String query2 = "SELECT tokens FROM user WHERE name = " + screenname;
-	            	PreparedStatement pstmt2 = connection.prepareStatement( query2 );
-		            ResultSet rs2 = pstmt.executeQuery();
-		            rs2.next();
+	            	String query2 = "SELECT tokens FROM user WHERE screenname = ?";
+					PreparedStatement pstmt2 = connection.prepareStatement( query2 );
+					pstmt2.setString(1, screenname);
+					ResultSet rs2 = pstmt2.executeQuery();
+					rs2.first();
 		            int currentTokens = rs2.getInt(1);
-		            
-		            //subtracting the price of the background
+					
+					//subtracting the price of the background
 		            currentTokens -= price;
 		            
 		            //updating the user's current tokens
-		            String updateQuery = "UPDATE user SET tokens = " + currentTokens + "WHERE name = " + screenname;
-		            PreparedStatement pstmt3 = connection.prepareStatement(updateQuery);
-		            ResultSet rs3 = pstmt.executeQuery();
+		            String updateQuery = "UPDATE user SET tokens = ? WHERE screenname = ?";
+					PreparedStatement pstmt3 = connection.prepareStatement(updateQuery);
+					pstmt3.setString(1, currentTokens+"");
+					pstmt3.setString(2, screenname);
+		            pstmt3.executeUpdate();
 		            
 		            %>
 		            <script>document.body.style.background = 'forestgreen';
 		            localStorage.bgcolor = 'forestgreen'; </script>
-		            <% 	
-		            Cookie cTokens = new Cookie("Tokens", currentTokens+"");
+					<% 
+					ogTokens.setMaxAge(0);
+					response.addCookie(ogTokens);	
+					Cookie cTokens = new Cookie("Tokens", currentTokens+"");
+					cTokens.setMaxAge(24*60*60);
 	                response.addCookie(cTokens);
 		            
 		            //confirmation message
