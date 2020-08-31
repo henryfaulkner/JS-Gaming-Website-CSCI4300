@@ -5,4 +5,4 @@
 ## How to get repository:
     $git clone https://github.com/henryfaulkner/JS-Gaming-Website-CSCI4300.git
 
-## Requires Apache Tomcat
+## Requires Apache Tomcat Server
